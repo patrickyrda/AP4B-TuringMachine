@@ -43,7 +43,7 @@ public class GameController implements Observer{
 	@FXML 
 	private CheckBox criteria1, criteria2, criteria3, criteria4, criteria5;
 	@FXML
-	private Button guessbutton, skipbutton, yesguess, noguess, continuebutton;
+	private Button guessbutton, skipbutton, continuebutton;
 	@FXML
 	private TextField guessinput;
 	@FXML
@@ -62,12 +62,9 @@ public class GameController implements Observer{
         setCurrentPlayerData();
         updateCriteriaVisibility();
         guessbutton.setVisible(false);
-        yesguess.setVisible(false);
-        noguess.setVisible(false);
         guessinput.setVisible(false);
         continuebutton.setVisible(false);
-        
-       
+        applyInputValidation(guessinput);
 	}
 	
 	private void setCurrentPlayerData() {
@@ -82,10 +79,7 @@ public class GameController implements Observer{
 	}
 	
 	private void updateCriteriaVisibility() {
-	    // Get the criteria count from the game instance
 	    int criteriaCount = game.getCriteriaCount();
-
-	    // Set visibility based on the criteria count
 	    criteria1.setVisible(criteriaCount >= 1);
 	    criteria2.setVisible(criteriaCount >= 2);
 	    criteria3.setVisible(criteriaCount >= 3);
@@ -118,7 +112,6 @@ public class GameController implements Observer{
 	    criteria4.setSelected(false);
 	    criteria5.setSelected(false);
 	}
-	
 	
 	private void handleCheckboxSelection(Event event) {
 		selectedCriteriaCount = 0;
@@ -179,7 +172,7 @@ public class GameController implements Observer{
 	    criteria3answer.setFill(Color.WHITE);
 	    criteria4answer.setFill(Color.WHITE);
 	    criteria5answer.setFill(Color.WHITE);
-	    
+	    guessinput.clear();
 	}
 	
 	
@@ -203,13 +196,17 @@ public class GameController implements Observer{
 				running = false;
 				if (specific.equals("LOST")) {
 					System.out.println("Everyone Lost");
-					//here have to control case when theres a winner already, when there is i only need to say that they lost, but they dont lose points!
-					endPopUp();
+					if (winnerscount == 0) {
+						endPopUp();
+					} else {
+						showWarning("Fin de défis", "il y a eu des gagnants, mais vous avez perdu!");
+						System.exit(0);
+					}
 				}
 				break;
 			case "WrongGuess":
 				System.out.println("Bossman "+specific+" you lost!");
-				showWinPopup("Vous avez perdu "+specific);
+				showWarning("Mauvaise devination!", "Vous avez perdu"+ specific);
 				break;
 			case "RightGuess":
 				winnerscount += 1;
@@ -300,151 +297,42 @@ public class GameController implements Observer{
 			game.addPlayer(new Player(codes.get(i), names.get(i)));
 		}
 		problemnb = probnumber;
-		
-		game.printtest();
-		
 	}
 	
 	private void handleGuessButton() {
+		if (!isGuessFieldCorrect()) {
+			showWarning("Attention aux cases!", "Veillez bien completer les valeurs!");
+			return;
+		}
+		
 		int guessvalue = Integer.parseInt(guessinput.getText());
 		game.takeGuess(guessvalue);
 	}
 	
-	
-	
-	//Valid
-	public void gameInitialize() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Abeg enter the problem number");
-		int probnumber = scanner.nextInt();
-		game = new GameState(probnumber);
-		game.addObserver(this);
-		System.out.println("Abeg now how many players");
-		int playerscount = scanner.nextInt();
-		scanner.nextLine();
-		for (int i = 0; i < playerscount; ++i) {
-			System.out.println("Abeg what be ur name");
-			String name = scanner.nextLine();
-			System.out.println("Abeg what be your code");
-			int code = scanner.nextInt();
-			scanner.nextLine();
-			game.addPlayer(new Player(code, name));
-		}
-		//scanner.close();
-		/* USED FOR TEST REASONS
-		System.out.println(game.getProblemDescription());
-		System.out.println("Criteria count: "+game.getCriteriaCount());
-		System.out.println("Player count: "+game.getPlayerCount()); */
-	}
-	//Valid
-	public void guessOption() {
-		//TODO: Maybe take out the logic for wanting to guess or not like i did wth askOption and handle outside of the funciton !
-		Scanner scanner = new Scanner(System.in);
-		String answer = "y";
-		if (game.getRound() < 3) {
-			System.out.println("Abeg do u want to guess? (y/n)");
-			answer = scanner.nextLine();
-		}
-		if (answer.equals("y")) {
-			System.out.println("Abeg what be your code");
-			int guesscode = scanner.nextInt();
-			game.takeGuess(guesscode);
-			//scanner.close();
-		} else if (answer.equals("n")) {
-			System.out.println("Passing to next player");
-		} else {
-			System.out.println(answer);
-		}
-	}
-	//valid TODO: Have to handle case not to repeat asking same criteria !maybe!
-	
-	
-	
-	
-	
-	public void askOption() {
-		Scanner scanner = new Scanner(System.in);
-		for (int i = 0; i < game.getCriteriaCount(); ++i) {
-			System.out.println((i+1)+". "+game.getCriteriaDescription(i));
-		}
-		//TODO: ask here if the person wants to ask or not and return if not !!!! HAVE TO ADD THIS IN THE GUI 
-		System.out.println("Check the criterias you fit ask");
-		int idx = 1;
-		while(idx < 4) { 
-			System.out.println("Abeg bro make u choose an option");
-			scanner.nextLine();
-			int criteriaNumber = scanner.nextInt();
-			scanner.nextLine();
-			game.askCriteria(criteriaNumber);
-			String answer = "n";
-			if (idx < 3) {
-				System.out.println("Do u want to ask another (y/n)");
-				answer = scanner.nextLine().trim();
-			}
-			if (answer.equals("y")) {
-				++idx;
-			} else {
-				idx = 4;
-			}
-			
-		}
-		//scanner.close();
-	}
-	
-	public void play() {
-		//Scanner scanner = new Scanner(System.in);
-		while (running) {
-			int playercount = game.getPlayerCount();
-			System.out.println("Player count is : "+playercount);
-			for (int i = 0; i < playercount; ++i) {	
-				
-				//TODO: Handle here if person wants to ask question !!
-				askOption();
-				
-				guessOption();
-				game.nextPlayer();
-				selectedCriteriaCount = 0;
-				
-			}
-			//avoid sending a no one won warning if players get correct on last round
-			if (running) { 
-				game.nextRound();
-			}
-			//Left tests to do : i have to check if in last round winning wont triiger the one above AND check if one winning does not stop others from also winning
-		}
-	}
-	
 	private void endPopUp() {
-		// Create a new Stage (popup window)
 	    Stage popupStage = new Stage();
 	    popupStage.setTitle("Warning");
 
-	    // Create a Label for the warning message
 	    Label warningMessage = new Label("VOUS AVEZ TOUS PERDU, -5 POUR TOUS!!!!!");
 	    warningMessage.setStyle("-fx-font-size: 16px; -fx-text-fill: red; -fx-font-weight: bold;");
 	    warningMessage.setWrapText(true);
 	    warningMessage.setTextAlignment(TextAlignment.CENTER);
 
-	    // Create the "End" button
 	    Button endButton = new Button("End");
 	    endButton.setStyle("-fx-font-size: 14px;");
 	    endButton.setOnAction(event -> {
-	        System.exit(0); // Terminate the program
+	        System.exit(0); 
 	    });
 
-	    // Layout for the popup
 	    VBox popupLayout = new VBox(20, warningMessage, endButton);
 	    popupLayout.setAlignment(Pos.CENTER);
 	    popupLayout.setPadding(new Insets(20));
 
-	    // Create a Scene for the popup
 	    Scene popupScene = new Scene(popupLayout, 300, 150);
 	    popupStage.setScene(popupScene);
 
-	    // Make the popup modal (blocks interaction with other windows)
 	    popupStage.initModality(Modality.APPLICATION_MODAL);
 
-	    // Show the popup
 	    popupStage.showAndWait();
 	}
 	
@@ -455,5 +343,36 @@ public class GameController implements Observer{
 	    alert.setContentText(msg);
 	    alert.showAndWait();
 	}
+	
+	private boolean isGuessFieldCorrect() {
+		if (guessinput.getText().isEmpty() || guessinput.getText().length() < 3) {
+			return false;
+		}
+		return true;
+	}
+	
+	private void applyInputValidation(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            
+            if (newValue.length() > 3) {
+                textField.setText(oldValue); 
+            } else if (newValue.matches("[1-5]{1}[1-5]{1}[1-5]{1}")) {
+                int value = Integer.parseInt(newValue);
+                if (value < 111 || value > 555) {
+                    textField.setText(oldValue); 
+                }
+            } else if (!newValue.isEmpty() && !newValue.matches("[1-5]*")) {
+                textField.setText(oldValue); 
+            }
+        });
+    }
+	
+	private void showWarning(String title, String message) {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 		
 }

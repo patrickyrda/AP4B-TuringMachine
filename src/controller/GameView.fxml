@@ -14,9 +14,9 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="146.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="541.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="895.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" width="346.0" />
-      <Circle fill="DODGERBLUE" layoutX="153.0" layoutY="385.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#9700c9" layoutX="153.0" layoutY="385.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
       <Polygon fill="DODGERBLUE" layoutX="259.0" layoutY="380.0" points="-27.0, 31.0, 28.0, 31.0, -2.0, -22.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="53.0" layoutX="335.0" layoutY="359.0" stroke="BLACK" strokeType="INSIDE" width="49.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="53.0" layoutX="335.0" layoutY="359.0" stroke="BLACK" strokeType="INSIDE" width="49.0" />
       <Text fx:id="roundplayername" layoutX="192.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font size="33.0" />
@@ -41,19 +41,17 @@
       <TextField fx:id="guessinput" layoutX="566.0" layoutY="355.0" />
       <Button fx:id="guessbutton" layoutX="615.0" layoutY="400.0" mnemonicParsing="false" text="GUESS" />
       <Button fx:id="skipbutton" layoutX="966.0" layoutY="551.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="168.0" text="SKIP" />
-      <CheckBox fx:id="criteria1" layoutX="977.0" layoutY="277.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox fx:id="criteria2" layoutX="977.0" layoutY="312.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox fx:id="criteria3" layoutX="977.0" layoutY="351.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox fx:id="criteria4" layoutX="977.0" layoutY="392.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox fx:id="criteria5" layoutX="977.0" layoutY="437.0" mnemonicParsing="false" text="CheckBox" />
-      <Button fx:id="yesguess" layoutX="564.0" layoutY="469.0" mnemonicParsing="false" text="YESGUESS" />
-      <Button fx:id="noguess" layoutX="664.0" layoutY="469.0" mnemonicParsing="false" text="NOGUESS" />
+      <CheckBox fx:id="criteria1" layoutX="840.0" layoutY="259.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="criteria2" layoutX="840.0" layoutY="294.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="criteria3" layoutX="840.0" layoutY="333.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="criteria4" layoutX="840.0" layoutY="366.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="criteria5" layoutX="840.0" layoutY="398.0" mnemonicParsing="false" text="CheckBox" />
       <Text fx:id="criteriatext" layoutX="927.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si vous ne voulez plus demander, appuyez ci-dessous" />
-      <Circle fx:id="criteria1answer" fill="WHITE" layoutX="1125.0" layoutY="286.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="criteria2answer" fill="WHITE" layoutX="1125.0" layoutY="321.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="criteria3answer" fill="WHITE" layoutX="1125.0" layoutY="360.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="criteria4answer" fill="WHITE" layoutX="1125.0" layoutY="400.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="criteria5answer" fill="WHITE" layoutX="1125.0" layoutY="446.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="criteria1answer" fill="WHITE" layoutX="813.0" layoutY="267.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="criteria2answer" fill="WHITE" layoutX="813.0" layoutY="300.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="criteria3answer" fill="WHITE" layoutX="813.0" layoutY="339.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="criteria4answer" fill="WHITE" layoutX="813.0" layoutY="370.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="criteria5answer" fill="WHITE" layoutX="813.0" layoutY="406.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Button fx:id="continuebutton" layoutX="544.0" layoutY="534.0" mnemonicParsing="false" prefHeight="128.0" prefWidth="240.0" text="Continue Next" />
    </children>
 </AnchorPane>

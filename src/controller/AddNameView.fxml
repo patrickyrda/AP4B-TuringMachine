@@ -15,22 +15,22 @@
       <TextField fx:id="player2input" layoutX="589.0" layoutY="318.0" visible="false" />
       <TextField fx:id="player3input" layoutX="589.0" layoutY="377.0" visible="false" />
       <TextField fx:id="player4input" layoutX="589.0" layoutY="435.0" visible="false" />
-      <Text layoutX="435.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
+      <Text fx:id="textp1" layoutX="435.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Text layoutX="435.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
+      <Text fx:id="textp2" layoutX="435.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Text layoutX="435.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3">
+      <Text fx:id="textp3" layoutX="435.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Text layoutX="435.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 4">
+      <Text fx:id="textp4" layoutX="435.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 4">
          <font>
             <Font size="23.0" />
          </font>
@@ -40,13 +40,13 @@
             <Font size="44.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="16.0" layoutX="954.0" layoutY="223.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
-      <Circle fill="DODGERBLUE" layoutX="841.0" layoutY="231.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb700" height="16.0" layoutX="954.0" layoutY="223.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
+      <Circle fill="#7900bf" layoutX="841.0" layoutY="231.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
       <Polygon fill="DODGERBLUE" layoutX="901.0" layoutY="201.0" points="-11.0, 40.0, 10.0, 40.0, -1.0, 20.0" stroke="BLACK" strokeType="INSIDE" />
       <TextField fx:id="codep1" layoutX="826.0" layoutY="275.0" />
-      <TextField fx:id="codep2" layoutX="826.0" layoutY="318.0" visible="false"/>
-      <TextField fx:id="codep3" layoutX="826.0" layoutY="365.0" visible="false"/>
-      <TextField fx:id="codep4" layoutX="826.0" layoutY="435.0" visible="false"/>
+      <TextField fx:id="codep2" layoutX="826.0" layoutY="318.0" visible="false" />
+      <TextField fx:id="codep3" layoutX="826.0" layoutY="365.0" visible="false" />
+      <TextField fx:id="codep4" layoutX="826.0" layoutY="435.0" visible="false" />
       <Button fx:id="valider" layoutX="534.0" layoutY="526.0" mnemonicParsing="false" onAction="#handlePlayer" prefHeight="111.0" prefWidth="260.0" text="VALIDER" />
    </children>
 </AnchorPane>

@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class PlayersController {
@@ -23,11 +24,12 @@ public class PlayersController {
 	private GameController maincontroller;
 	@FXML
 	private TextField player1input, player2input, player3input, player4input, codep1, codep2, codep3, codep4;
+	@FXML
+	private Text textp1, textp2, textp3, textp4;
 	
 	
 	@FXML
 	public void initialize() {
-        // Apply the input validation to each TextField
         applyInputValidation(codep1);
         applyInputValidation(codep2);
         applyInputValidation(codep3);
@@ -36,17 +38,16 @@ public class PlayersController {
 	
 	private void applyInputValidation(TextField textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Ensure the input has exactly 3 digits and each digit is between 1 and 5
+            
             if (newValue.length() > 3) {
-                textField.setText(oldValue); // Revert to the previous value if it's more than 3 digits
+                textField.setText(oldValue); 
             } else if (newValue.matches("[1-5]{1}[1-5]{1}[1-5]{1}")) {
-                // Allow only numbers with digits between 1 and 5
                 int value = Integer.parseInt(newValue);
                 if (value < 111 || value > 555) {
-                    textField.setText(oldValue); // Revert to the previous value if it's out of range
+                    textField.setText(oldValue); 
                 }
             } else if (!newValue.isEmpty() && !newValue.matches("[1-5]*")) {
-                textField.setText(oldValue); // Revert to the previous value if it's not a valid number
+                textField.setText(oldValue); 
             }
         });
     }
@@ -58,6 +59,10 @@ public class PlayersController {
         codep2.setVisible(playerscount >= 2);
         codep3.setVisible(playerscount >= 3);
         codep4.setVisible(playerscount == 4);
+        textp2.setVisible(playerscount >= 2);
+        textp3.setVisible(playerscount >= 3);
+        textp4.setVisible(playerscount == 4);
+        
 	}
 	
 	public void setCountNumber(int playerscount, int probnumber) {
@@ -108,18 +113,18 @@ public class PlayersController {
 	}
 	
 	private boolean isAllFieldsFilled() {
-        /*if (playerscount >= 1 && (player1input.getText().isEmpty() || codep1.getText().isEmpty()) || codep1.getText().length() < 3) {
+        if (playerscount >= 1 && (player1input.getText().isEmpty() || codep1.getText().isEmpty() || codep1.getText().length() < 3)) {
             return false;
         }
-        if (playerscount >= 2 && (player2input.getText().isEmpty() || codep2.getText().isEmpty()) || codep2.getText().length() < 3) {
+        if (playerscount >= 2 && (player2input.getText().isEmpty() || codep2.getText().isEmpty() || codep2.getText().length() < 3)) {
             return false;
         }
-        if (playerscount >= 3 && (player3input.getText().isEmpty() || codep3.getText().isEmpty()) || codep3.getText().length() < 3) {
+        if (playerscount >= 3 && (player3input.getText().isEmpty() || codep3.getText().isEmpty() || codep3.getText().length() < 3)) {
             return false;
         }
-        if (playerscount == 4 && (player4input.getText().isEmpty() || codep4.getText().isEmpty()) || codep4.getText().length() < 3) {
+        if (playerscount == 4 && (player4input.getText().isEmpty() || codep4.getText().isEmpty() || codep4.getText().length() < 3)) {
             return false;
-        }*/
+        }
         return true;
     }
 	

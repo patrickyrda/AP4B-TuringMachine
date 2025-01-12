@@ -3,8 +3,6 @@ package model;
 public class Player {
 	private String name;
 	private final int punchcardscode;
-	//do not know if i actually need this one
-	//private int victories = 0;
 	private boolean thumbup = false;
 	
 	public Player(int punchcardscode, String name) {
@@ -15,10 +13,6 @@ public class Player {
 	public String getName() {
 		return name;
 	}
-	/*
-	public void incrementVictory() {
-		victories++;
-	}*/
 	
 	public int getPunchCode() {
 		return punchcardscode;
